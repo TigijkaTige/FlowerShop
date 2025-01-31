@@ -1,0 +1,84 @@
+#LOGO {
+    width: 40px;
+    height: 40px;
+}
+.Bot{
+    display: flex;
+    justify-content: center;
+    background-color: plum;
+    color:black;
+    text-decoration: none;
+}
+.custom-pager{
+  /*стиль блока навигации*/
+       margin-left:435px;
+       margin-top:5px;
+       overflow:hidden;    
+  }
+  
+  a.custom-pager-button{
+      /*стили неактивной кнопки навигации*/
+      display:block;
+      float:left;
+      margin-right:5px;
+      width:29px;
+      height:13px;
+      overflow:hidden;
+      background-image:url(/img/newdis/ob-in.png);
+      background-position:left top;
+      background-repeat:no-repeat;
+      cursor: pointer;
+  }
+  
+  .custom-pager a.cycle-pager-active{ 
+       /*стили для активной кнопки навигации*/
+       background-image:url(/img/newdis/ob.png) !important;
+       cursor: pointer;
+  }
+  .custom-pager > * { cursor: pointer;} /*курсор при наведении на кнопки навигации - как у ссылки*/
+  
+  #content-ob{
+    display:flex;
+    justify-content:center;
+    
+    
+  }
+  #progress { 
+  /*стиль для прогрессбара*/
+  margin-top:3px; 
+  height: 3px; 
+  width: 0px; 
+  background: #860b70; 
+  z-index: 500; 
+  }
+.banner{
+  display:inline-flex;
+ 
+  width: 70%;
+  height: 50%;
+  
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  text-align:center;
+  padding: 30px;
+  margin: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /*animation: fadeIn 2s ease-in-out;
+  transition: transform 1s ease;*/
+
+  
+}
+.bannerText{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 25px;
+  color:black;
+  
+  
+}
+.bannerPhoto{
+  background-size:cover;
+  width:900px;
+  height:450px;
+ 
+
+}

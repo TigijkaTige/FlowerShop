@@ -1,0 +1,14 @@
+﻿
+#line {
+    display: inline-flex;
+}
+
+#Menu {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    display: inline-block;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 10px;
+}

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<FlowerShop.Models.Product> 
+@{
+    ViewData["Title"] = "Catalog";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/catalog.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <title>Услуги</title>
+</head>
+<body >
+    <div id="line">
+        <div id="Menu">
+            <h3>Сортировать</h3>
+            <select id="Sort" name="Sort">
+                <option value="SortDown">По Цене (Убывание)</option>
+                <option value="SortUp">По Цене (По возрастанию)</option>
+                <option value="SortA">От А до Я</option>
+                <option value="SortZ">От Я до А</option>
+            </select>
+            <table>
+                @foreach (var item in ViewBag.Categories as List<Categories>)
+                {
+                    <tr>
+                        <p><label><input type="checkbox" name="categories"> @Html.DisplayFor(modelItem => item.Title)</label></p>
+                    </tr>
+
+                } 
+            </table>
+            <!--Чекбоксы с категорими возможно будут браться из базы данных-->
+            <!--При взаимодествие с Чекбоксами и Списком будет меняться отображаемые товары-->
+        </div>
+        <div class="catalog">
+
+            @foreach (var item in Model)
+            {
+                <div class="product-card">
+                    @if (item.Picture != null)
+                    {
+
+
+                        <img class="product-card__image" src="@Url.Action("Picture",new { Id = item.Id, x=300, y=300})" />
+                    }
+                    <h3 class="product-card__title">@Html.DisplayFor(modelItem => item.Title)</h3>
+                    <span class="product-card__price">@Html.DisplayFor(modelItem => item.Cost) руб.</span>
+                   
+                    <button class="product-card__button" type="submit" id="submit" onclick="addToCart(@Html.DisplayFor(modelItem => item.Id),1);">Добавить в корзину</button>
+
+                   
+                </div>
+            }
+
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+
+</html>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+<script>
+        function addToCart(productId, CountPr){
+            
+         var form = $('#__AjaxAntiForgeryForm');
+        var token = $('input[name="__RequestVerificationToken"]', form).val();
+    $.ajax({
+       url:'@Url.Action("Add", "Cart")', // try to use Url Helper when possible
+       
+        type: 'POST', // use Get for [HttpGet] action or POST for [HttpPost]
+        //contentType: 'application/json', not needed
+        //dataType: 'jsonp', jsonp is for sending to a site other than the current one..
+        data: {  
+             __RequestVerificationToken: token,
+            productId: productId,
+            CountPr: CountPr
+        }
+        
+        
+    });
+    
+        }
+</script>

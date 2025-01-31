@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FlowerShop.Models.Cart>
+@{
+    ViewData["Title"] = "Cart";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/catalog.css">
+    <title>Мои Заказы</title>
+</head>
+<body>
+    <div class="BUY">
+        <a class="product-card__button" asp-controller="Order" asp-action="Index" type="button">ПЕрейти к офоромлению заказа</a>
+        <h3 class="product-card__title">Сумма:  </h3>
+
+    </div>
+     @foreach (var item in Model) {
+    <div class="product-card2">
+            @if (item.Product.Picture != null)
+            {
+
+
+                <img class="product-card__image" src="@Url.Action("Picture",new { Id = item.Id, x=200, y=200})" />
+            }
+            <button class="product-card__button"> Удалить</button>
+            <h3 class="product-card__title"> @Html.DisplayFor(modelItem => item.Product.Title)</h3>
+            <p class="product-card__description">@Html.DisplayFor(modelItem => item.Product.Description)</p>
+            <span class="product-card__price">@Html.DisplayFor(modelItem => item.Product.Cost)</span>
+            <button class="product-card__button"> @Html.DisplayFor(model => item.CountPr) штук(а\и)</button>
+    </div>
+     }
+    
+</body>
+</html>
